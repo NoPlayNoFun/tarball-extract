@@ -1,7 +1,7 @@
 {
-  "name": "tarball_extract",
+  "name": "tarball-extract",
   "description": "A simple tarball download and extraction lib for node.",
-  "version": "0.0.3",
+  "version": "0.0.2-npnf.0.1",
   "author": {
     "name": "Joshua Heiks",
     "email": "joshuaheiks@gmail.com"

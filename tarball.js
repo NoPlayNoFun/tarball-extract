@@ -1,7 +1,7 @@
 var fs = require('fs')
  , tar = require('tar')
  , zlib = require('zlib')
- , wget = require('wget')
+ , wget = require('./wget_npnf')
  
 function extractTarball(sourceFile, destination, callback) {
   if( /(gz|tgz)$/i.test(sourceFile)) {
@@ -22,12 +22,12 @@ function extractTarball(sourceFile, destination, callback) {
 
 function extractTarballDownload(url, downloadFile, destination, options, callback) {
   if(!options) options = {}
-  var download = wget.download(url, downloadFile, options)
+  var download = wget.download(url, downloadFile, options, options.headers)
   download.on('error', function(err){
     callback('error', {error: err})
   })
   download.on('end', function(output) {
-    extractTarball(output, destination, function(err, data){
+    extractTarball(output, destination, function(err, data) {
       callback(null, {url: url, downloadFile: downloadFile, destination: destination})
     })
   })
